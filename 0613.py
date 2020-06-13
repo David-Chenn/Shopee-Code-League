@@ -66,7 +66,7 @@ def concentrate(data, startIndex, endIndex):
     
     ordNum = endIndex - startIndex + 1 # total orders
     userSet = set(data['userid'][startIndex:endIndex+1])
-    userNum = len(users)
+    userNum = len(userSet)
     
     return ordNum / userNum
     
@@ -77,17 +77,20 @@ def concentrate(data, startIndex, endIndex):
 
 for eachDF in dfList:
     START = True
+    start,end = 0, 0
     start_time = eachDF['event_time'][0]
     end_time = eachDF['event_time'][0]
     for i in range(len(eachDF)):
         if START:
             start = i
-            print(eachDF['event_time'][i])
+            start_time = eachDF['event_time'][i]
+            print(start_time)
             START = False
         else:
             if (eachDF['event_time'][i] - start_time).seconds > 3600:
                 end = i-1
-                print(eachDF['event_time'][i-1])
+                end_time = eachDF['event_time'][i-1]
+                print(end_time)
                 rate = concentrate(eachDF, start, end)
                 if rate >= 3: #order brushing
                 else: #no order brushing
