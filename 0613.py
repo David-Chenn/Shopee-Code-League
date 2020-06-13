@@ -92,8 +92,9 @@ for eachDF in dfList:
                 end_time = eachDF['event_time'][i-1]
                 print(end_time)
                 rate = concentrate(eachDF, start, end)
-                if rate >= 3: #order brushing
-                else: #no order brushing
+                print(rate)
+                #if rate >= 3: #order brushing
+                #else: #no order brushing
                     
                 START = True
                 
